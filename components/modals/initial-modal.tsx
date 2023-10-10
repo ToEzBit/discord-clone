@@ -22,12 +22,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { FileUpload } from "@/components/file-upload";
 
 const formSchema = z.object({
   name: z.string().min(1, {
     message: "Server name is required.",
   }),
-  imageUrlL: z.string().min(1, {
+  imageUrl: z.string().min(1, {
     message: "Server image is required.",
   }),
 });
@@ -38,6 +39,7 @@ export const InitalModal = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -71,7 +73,23 @@ export const InitalModal = () => {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 ">
             <div className="space-y-8 px-6">
               <div className="flex items-center justify-center text-center">
-                TODO: Image Upload
+                <FormField
+                  control={form.control}
+                  name="imageUrl"
+                  render={({ field }) => {
+                    return (
+                      <FormItem>
+                        <FormControl>
+                          <FileUpload
+                            endpoint="serverImage"
+                            value={field.value}
+                            onChange={field.onChange}
+                          />
+                        </FormControl>
+                      </FormItem>
+                    );
+                  }}
+                />
               </div>
               <FormField
                 control={form.control}
@@ -97,7 +115,7 @@ export const InitalModal = () => {
               />
             </div>
             <DialogFooter className="bg-grey-100 px-6 py-4">
-              <Button variant="primary" disabled={isLoading}>
+              <Button variant="primary" disabled={isLoading} type="submit">
                 Create
               </Button>
             </DialogFooter>
