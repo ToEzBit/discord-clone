@@ -6,11 +6,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Check,
-  Copy,
   Gavel,
   Loader2,
   MoreVertical,
-  RefreshCw,
   Shield,
   ShieldAlert,
   ShieldCheck,
@@ -24,9 +22,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avatar";
 import {
@@ -99,7 +95,7 @@ export const MembersModal = () => {
     <Dialog open={isModalOpen} onOpenChange={onClose}>
       <DialogContent className="bg-white text-black overflow-hidden">
         <DialogHeader className="pt-8 px-6">
-          <DialogTitle className="text02xl text-center font-bold">
+          <DialogTitle className="text-2xl text-center font-bold">
             Manage Members
           </DialogTitle>
           <DialogDescription className="text-center text-zinc-500">
