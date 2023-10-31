@@ -34,7 +34,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
     },
   });
 
-  const isLoading = form.formState.isSubmitted;
+  const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -46,6 +46,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
       await axios.post(url, values);
       form.reset();
       router.refresh();
+      console.log(form, "kuy");
     } catch (error) {
       console.log(error);
     }
